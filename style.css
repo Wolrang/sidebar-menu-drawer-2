@@ -1,0 +1,446 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-family: 'Jua', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  }
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.global-header {
+  height: 90px;
+}
+
+.global-header .gnb {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.global-header .lnb {
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  left: 0;
+}
+
+.gnb {
+  height: 50px;
+  background-color: rgb(255, 204, 0);
+  border-bottom: 1px solid #e0e2e7;
+}
+
+.gnb-wrapper {
+  position: relative;
+  width: 95%;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo img {
+  height: 40px;
+}
+
+.gnb-icon-button {
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  color: #000;
+}
+
+.is-glass {
+  position: relative;
+  left: 200px;
+}
+
+.gnb-icon-button.is-menu {
+  color: rgb(222, 0, 0);
+}
+
+.gnb-icon-button.is-menu:active {
+  color: rgb(165, 5, 5);
+}
+
+.gnb-icon-button:active{
+  color: #3f4150;
+}
+
+.lnb {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e2e7;
+}
+
+.lnb-list {
+  width: 95%;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.lnb-list a {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0 8px;
+}
+
+.lnb-list a:active {
+  color: rgb(222, 0, 0);
+}
+
+.background {
+  height: 400px;
+  background-image: url(./images/lego.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  padding: 30px 20px;
+  background-color: #fff;
+  z-index: 200;
+  transform: translate(-280px, 0);
+  transition: transform 300ms ease-in-out;
+  overflow: scroll;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+.sidebar.is-active {
+  transform: translate(0, 0);
+}
+
+.sidebar-header {
+  padding: 0 12px;
+}
+
+.sidebar-user {
+  height: 80px;
+}
+
+.sidebar-user a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #3f4150;
+  font-weight: bold;
+  width: 100%;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 8px;
+  /* flex-shrink 기본값은 1/ shrink값을 0으로 바꾸면 컨테이너 크기만큼 유지 */
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-name {
+  overflow: hidden;
+  /* white-space의 기본값은 normal / 공백과 줄바꿈을 어떻게 처리할건지 정의하는 속성 */
+  white-space: nowrap;
+  /* text-overflow는 넘치는 텍스트를 어떻게 처리할건지 정의 */
+  text-overflow: ellipsis;
+}
+
+.drawer-menu {
+  border-bottom: 1px solid #e0e2e7;
+}
+
+.drawer-menu.is-product.is-open .drawer-menu-content {
+  max-height: 288px;
+}
+
+.drawer-menu.is-brand.is-open .drawer-menu-content {
+  max-height: 216px;
+}
+
+.drawer-menu.is-info.is-open .drawer-menu-content {
+  max-height: 180px;
+}
+
+.drawer-menu-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+.drawer-menu.is-open .fa-chevron-down {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.drawer-menu-button i:first-child {
+  margin-right: 8px;
+  font-size: 20px;
+  color: #3f4150;
+}
+
+.drawer-menu-button i:last-child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  color: #3f4150;
+}
+
+.drawer-menu-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease-in-out;
+}
+
+.drawer-menu-item a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  font-weight: bold;
+  color: #3f4150;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(63, 65, 80, 0.5);
+  /* visibility: hidden;은 화면상에서는 사라지지만 자기 공간은 그대로 차지 */
+  visibility: hidden;
+}
+
+.overlay.is-active {
+  visibility: visible;
+}
+
+.empty-box {
+  height: 1500px;
+}
+
+.sm-only {
+  display: block;
+}
+
+.sm-hidden {
+  display: none;
+}
+
+.lg-only {
+  display: none;
+}
+
+
+@media screen and (min-width:768px) {
+  body {
+    border: 3px solid red;
+  }
+
+  .sm-only {
+    display: none;
+  }
+
+  .sm-hidden {
+    display: block;
+  }
+
+  .lg-only {
+    display: none;
+  }
+  .global-header {
+    height: 90px;
+  }
+   
+  .global-header .lnb {
+    top: 80px;
+  }
+  
+  .gnb {
+    height: 80px;
+    padding: 10px;
+  }
+  
+  .logo {
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    flex-grow: 1;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+
+  .is-glass {
+    position: relative;
+    left: 75%;
+    margin-top: 10px;
+  }
+  
+
+  .gnb-list {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .gnb-item a {
+    color: #000;
+    font-weight: bold;
+    position: relative;
+    right: 60px;
+    margin-right: 20px;
+  }
+
+  .gnb-item:last-child a {
+    margin-right: 0;
+  }
+
+  .gnb-box {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+  }
+
+  .gnb-icon-button.is-shopping {
+    margin-right: 10px;
+  }
+  
+  .user img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .lnb {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e2e7;
+  }
+  
+  .lnb-list {
+    width: 95%;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .lnb-list a {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0 8px;
+  }
+  
+  .lnb-list a:active {
+    color: rgb(222, 0, 0);
+  }
+}
+@media screen and (min-width:1200px) {
+  body {
+    border: 3px solid blue;
+  }
+
+  .lg-only {
+    display: block;
+  }
+
+  .sm-hidden {
+    display: none;
+  }
+
+  .user.sm-hidden {
+    display: block;
+  }
+
+  .gnb-nav.sm-hidden {
+    display: block;
+  }
+
+  .gnb-list {
+    position: relative;
+    left: 80px;
+  }
+
+  .is-glass {
+    position: relative;
+    left: 71%;
+    font-size: 18px;
+    margin-top: 0;
+    color: #bdc0c7;
+    z-index: 100;
+  }
+
+  .gnb-box a {
+    position: relative;
+    left: 1100%;
+  }
+
+  input {
+    position: relative;
+    left: 200px;
+    width: 200px;
+    height: 40px;
+  }
+  
+  .is-bracket {
+    position: relative;
+    left: 120px;
+  }
+
+}
